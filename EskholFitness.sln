@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30104.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EskholFitness.BL", "EskholFitness.BL\EskholFitness.BL.csproj", "{C249DFFA-0F8D-48B2-889E-97D509B64E95}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EskholFitness.Console", "EskholFitness.Console\EskholFitness.Console.csproj", "{E40A84FF-EE94-4C50-8DC5-6FEE6056EB0C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EskholFitness.CMD", "EskholFitness.Console\EskholFitness.CMD.csproj", "{E40A84FF-EE94-4C50-8DC5-6FEE6056EB0C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

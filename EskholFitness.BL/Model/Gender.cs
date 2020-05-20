@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EskholFitness.BL.Model
 {
+    [Serializable]
     public class Gender
     {
         public string genderName { get; }

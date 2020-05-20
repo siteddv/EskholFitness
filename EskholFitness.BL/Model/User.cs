@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EskholFitness.BL.Model
 {
     /// <summary>
     /// Пользователь
     /// </summary>
+    [Serializable]
     public class User
     {
         #region свойства
@@ -41,7 +38,7 @@ namespace EskholFitness.BL.Model
         /// <param name="weight">Вес</param>
         /// <param name="height">Рост</param>
         #endregion
-        public User(string userName, Gender gender, DateTime bithDate, double weight, double height)
+        public User(string userName, Gender gender, DateTime birthDate, double weight, double height)
         {
             #region Проверка условий
             if (string.IsNullOrWhiteSpace(userName))
@@ -52,7 +49,7 @@ namespace EskholFitness.BL.Model
             {
                 throw new ArgumentNullException("Пол пользователя не может быть null.", nameof(gender));
             }
-            if(birthDate < DateTime.Parse("0.0.1900") || birthDate > DateTime.Now)
+            if(birthDate < DateTime.Parse("1/1/1900") || birthDate > DateTime.Now)
             {
                 throw new ArgumentException($"Пользователь не можеть быть старше {DateTime.Now.Year-1900} лет.", nameof(birthDate));
             }
