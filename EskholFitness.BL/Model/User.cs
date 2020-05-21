@@ -12,23 +12,47 @@ namespace EskholFitness.BL.Model
         /// <summary>
         /// Имя.
         /// </summary>
-        public string userName { get; private set; }
+        public string userName { get; set; }
         /// <summary>
         /// Пол.
         /// </summary>
-        public Gender gender { get; private set; }
+        public Gender gender { get; set; }
         /// <summary>
         /// Дата рождения.
         /// </summary>
-        public DateTime birthDate { get; private set; }
+        public DateTime birthDate { get; set; }
         /// <summary>
         /// Вес.
         /// </summary>
-        public double weight { get; private set; }
+        public double weight { get; set; }
         /// <summary>
         /// Рост.
         /// </summary>
-        public double height { get; private set; }
+        public double height { get; set; }
+        public int Age {
+            get
+            {
+                
+                if(DateTime.Now.Month < birthDate.Month)
+                {
+                    return DateTime.Now.Year - birthDate.Year-1;
+                }else if (DateTime.Now.Month > birthDate.Month)
+                {
+                    return DateTime.Now.Year - birthDate.Year;
+                }
+                else
+                {
+                    if (DateTime.Now.Day >= birthDate.Day)
+                    {
+                        return DateTime.Now.Year - birthDate.Year;
+                    }
+                    else
+                    {
+                        return DateTime.Now.Year - birthDate.Year - 1;
+                    }
+                }
+            }  
+        } 
         /// <summary>
         /// Создание нового пользователя
         /// </summary>
@@ -68,9 +92,17 @@ namespace EskholFitness.BL.Model
             this.weight = weight;
             this.height = height;
         }
+        public User(string userName)
+        {
+            if (string.IsNullOrWhiteSpace(userName))
+            {
+                throw new ArgumentNullException("Имя пользователя не может быть пустым или равным null.", nameof(userName));
+            }
+            this.userName = userName;
+        }
         public override string ToString()
         {
-            return $"Имя: {userName} Пол: {gender} Дата рождения: {birthDate} Вес: {weight} Рост: {height}";
+            return $"Имя: {userName} Пол: {gender} Возрат: {Age} Вес: {weight} Рост: {height}";
         }
     }
 }

@@ -19,48 +19,48 @@ namespace EskholFitness.CMD
                 {
                     break;
                 }
-                Console.WriteLine("Повторите ввод. Имя не может быть короче двух символов.");
+                Console.WriteLine("Повторите ввод имени:");
             }
-            Console.WriteLine("Введитe свой пол:");
-            string gender = Console.ReadLine();
-            Console.WriteLine("Введитe свой день рождения:(вида день/месяц/год рождения)");
-            DateTime birthDate;
-            while (true)
+            UserController uc = new UserController(name);
+            if (uc.IsNewUser)
             {
-                birthDate = DateTime.Parse(Console.ReadLine());
-                if (birthDate > DateTime.Parse("1/1/1900") && birthDate < DateTime.Now)
+                Console.WriteLine("Введитe свой пол:");
+                string genderName = Console.ReadLine();
+                Console.WriteLine("Введитe свою дату рождения:(вида dd/mm/yyyy рождения)");
+                DateTime birthDate;
+                while (true)
                 {
-                    break;
+                    if (DateTime.TryParse(Console.ReadLine(), out birthDate) && birthDate > DateTime.Parse("1/1/1900") && birthDate < DateTime.Now)
+                    {
+                        break;
+                    }
+                    Console.WriteLine($"Повторите ввод даты рождения:");
                 }
-                Console.WriteLine($"Повторите ввод. Пользователь не можеть быть старше {DateTime.Now.Year-1900} лет."); 
-            }
-            Console.WriteLine("Введитe свой вес:");
-            double weight;
-            while (true)
-            {
-                weight = double.Parse(Console.ReadLine());
-                if (weight > 0)
+                Console.WriteLine("Введитe свой вес:");
+                double weight;
+                while (true)
                 {
-                    break;
+                    if (double.TryParse(Console.ReadLine(), out weight) && weight > 0)
+                    {
+                        break;
+                    }
+                    Console.WriteLine("Повторите ввод веса:");
                 }
-                Console.WriteLine("Повторите ввод. Вес пользователя не можеть быть меньше или равным нулю.");
-            }
-            Console.WriteLine("Введитe свой рост:");
-            double height;
-            while (true)
-            {
-                height = double.Parse(Console.ReadLine());
-                if (height > 0)
+                Console.WriteLine("Введитe свой рост:");
+                double height;
+                while (true)
                 {
-                    break;
+                    if (double.TryParse(Console.ReadLine(), out height) && height > 0)
+                    {
+                        break;
+                    }
+                    Console.WriteLine("Повторите ввод роста:");
                 }
-                Console.WriteLine("Повторите ввод. Рост пользователя не можеть быть меньше или равным нулю.");
+                uc.SetNewUserData(genderName, birthDate, weight, height);
+                Console.Write("Сохранено");
             }
-            UserController uc = new UserController(name, gender, birthDate, weight, height);
-            uc.Save();
-            Console.WriteLine($"Сохранено\nВы ввели пльзователя : {uc.Load()}");
+            Console.WriteLine($"\nВы ввели пльзователя : {uc.CurrentUser}");
             Console.ReadKey();
-
         }
     }
 }
