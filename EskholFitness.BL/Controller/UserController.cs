@@ -44,8 +44,11 @@ namespace EskholFitness.BL.Controller
         {
             using (FileStream fs = new FileStream("file.dat", FileMode.OpenOrCreate))
             {
-                BinaryFormatter bf = new BinaryFormatter();
-                bf.Serialize(fs, users);
+                if (fs.Length > 0)
+                {
+                    BinaryFormatter bf = new BinaryFormatter();
+                    bf.Serialize(fs, users);
+                }
             }
         }
         public List <User> GetUsersData()
@@ -53,7 +56,7 @@ namespace EskholFitness.BL.Controller
             using (FileStream fs = new FileStream("file.dat", FileMode.OpenOrCreate))
             {
                 BinaryFormatter bf = new BinaryFormatter();
-                if (bf.Deserialize(fs) is List<User> users)
+                if (fs.Length>0 && bf.Deserialize(fs) is List<User> users)
                 {
                     this.users = users;
                 }
