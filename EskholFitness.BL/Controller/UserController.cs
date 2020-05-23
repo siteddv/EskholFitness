@@ -8,8 +8,9 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace EskholFitness.BL.Controller
 {
-    public class UserController
+    public class UserController : BaseController
     {
+        private const string USER_FILE_NAME = "user.dat";
         public List <User> users { get; set; }
         public User CurrentUser { get; set; }
 
@@ -29,7 +30,7 @@ namespace EskholFitness.BL.Controller
                 {
                     CurrentUser = new User(userName);
                     users.Add(CurrentUser);
-                    Save();
+                    SaveUsersData();
                     IsNewUser = true;
                 }
             }
@@ -40,32 +41,13 @@ namespace EskholFitness.BL.Controller
             GetUsersData();
 
         }
-        public void Save()
+        public void SaveUsersData()
         {
-            using (FileStream fs = new FileStream("file.dat", FileMode.OpenOrCreate))
-            {
-                if (fs.Length > 0)
-                {
-                    BinaryFormatter bf = new BinaryFormatter();
-                    bf.Serialize(fs, users);
-                }
-            }
+            SaveData(USER_FILE_NAME, users);
         }
         public List <User> GetUsersData()
         {
-            using (FileStream fs = new FileStream("file.dat", FileMode.OpenOrCreate))
-            {
-                BinaryFormatter bf = new BinaryFormatter();
-                if (fs.Length>0 && bf.Deserialize(fs) is List<User> users)
-                {
-                    this.users = users;
-                }
-                else
-                {
-                    return new List <User>();
-                }
-            }
-            return users;
+            return GetData<List<User>>(USER_FILE_NAME) ?? new List<User>();
         }
         public void SetNewUserData(string genderName, DateTime birthDate, double weight = 1, double height = 1)
         {
@@ -73,7 +55,7 @@ namespace EskholFitness.BL.Controller
             CurrentUser.birthDate = birthDate;
             CurrentUser.weight = weight;
             CurrentUser.height = height;
-            Save();
+            SaveUsersData();
         }
     }
 }
