@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // Общие сведения об этой сборке предоставляются следующим набором
 // набора атрибутов. Измените значения этих атрибутов для изменения сведений,
 // связанные с этой сборкой.
-[assembly: AssemblyTitle("EskholFitness.Console")]
+[assembly: AssemblyTitle("EskholFitness.CMD")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("EskholFitness.Console")]
+[assembly: AssemblyProduct("EskholFitness.CMD")]
 [assembly: AssemblyCopyright("Copyright ©  2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Следующий GUID представляет идентификатор typelib, если этот проект доступен из модели COM
-[assembly: Guid("e40a84ff-ee94-4c50-8dc5-6fee6056eb0c")]
+[assembly: Guid("a1a04640-950f-4e0a-b5eb-d5636250a675")]
 
 // Сведения о версии сборки состоят из указанных ниже четырех значений:
 //

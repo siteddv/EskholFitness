@@ -96,7 +96,7 @@ namespace EskholFitness.BL.Model
         {
             if (string.IsNullOrWhiteSpace(userName))
             {
-                throw new ArgumentNullException("Имя пользователя не может быть пустым или равным null.", nameof(userName));
+                throw new ArgumentNullException("ErrorNullUserName", nameof(userName));
             }
             this.userName = userName;
         }

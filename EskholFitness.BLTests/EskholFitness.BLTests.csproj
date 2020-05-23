@@ -57,6 +57,11 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Controller\EatingControllerTests.cs" />
+    <Compile Include="Controller\MessagesEN.Designer.cs">
+      <DependentUpon>MessagesEN.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Controller\UserControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -68,6 +73,12 @@
       <Project>{C249DFFA-0F8D-48B2-889E-97D509B64E95}</Project>
       <Name>EskholFitness.BL</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Controller\MessagesEN.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>MessagesEN.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
