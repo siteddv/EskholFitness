@@ -10,7 +10,7 @@ namespace EskholFitness.BL.Controller
 {
     public abstract class BaseController
     {
-        protected T GetData<T>(string filePath)
+        protected T GetData<T>(string filePath) where T : class
         {
             using (FileStream fs = new FileStream(filePath, FileMode.OpenOrCreate))
             {
@@ -29,11 +29,8 @@ namespace EskholFitness.BL.Controller
         {
             using (FileStream fs = new FileStream(filePath, FileMode.OpenOrCreate))
             {
-                if (fs.Length > 0)
-                {
-                    BinaryFormatter bf = new BinaryFormatter();
-                    bf.Serialize(fs, item);
-                }
+                BinaryFormatter bf = new BinaryFormatter();
+                bf.Serialize(fs, item);
             }
         }
     }

@@ -11,35 +11,35 @@ namespace EskholFitness.BL.Controller
     public class EatingController : BaseController
     {
         private const string FOOD_FILE_NAME = "foods.dat";
-        private const string EATINGS_FILE_NAME = "eatings.dat";
+        private const string EATING_FILE_NAME = "eating.dat";
         private readonly User user;
         public List<Food> Foods { get; set; }
-        public List <FoodEating> Eatings { get; set; }
+        public FoodEating Eating { get; set; }
 
         public EatingController(User user)
         {
             this.user = user ?? throw new ArgumentException("Пользователь не может быть пустым", nameof(user));
             Foods = GetAllFoods();
-            Eatings = GetAllEatings();
+            Eating = GetEating();
         }
 
-        private List<FoodEating> GetAllEatings()
+        private FoodEating GetEating()
         {
-            return GetData<List<FoodEating>>(EATINGS_FILE_NAME) ?? new List<FoodEating>();
+            return GetData<FoodEating>(EATING_FILE_NAME) ?? new FoodEating(user);
         }
 
-        public void AddFood(string foodName, double weight)
+
+        public void AddFood(Food food, double weight)
         {
-            var food = Foods.SingleOrDefault(f => f.Name.Equals(foodName));
-            if (food == null)
+            var product = Foods.SingleOrDefault(f => f.Name.Equals(food.Name));
+            if (product == null)
             {
                 Foods.Add(food);
             }
-            else
-            {
-                food.Calories += weight
-            }
+            Eating.Add(food, weight);
+            Save();
         }
+
 
         public List<Food> GetAllFoods()
         {
@@ -48,7 +48,7 @@ namespace EskholFitness.BL.Controller
         public void Save()
         {
             SaveData(FOOD_FILE_NAME, Foods);
-            SaveData(EATINGS_FILE_NAME, Eatings);
+            SaveData(EATING_FILE_NAME, Eating);
         }
     }
 }

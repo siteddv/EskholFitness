@@ -2,6 +2,7 @@
 
 namespace EskholFitness.BL.Model
 {
+    [Serializable]
     public class Food
     {
         /// <summary>
@@ -28,7 +29,7 @@ namespace EskholFitness.BL.Model
         public Food(string name) : this(name, 0, 0, 0, 0) { }
         public Food(string name, double proteins, double fats, double carbohydrates, double calories)
         {
-            if (string.IsNullOrWhiteSpace(Name))
+            if (string.IsNullOrWhiteSpace(name))
             {
                 throw new ArgumentNullException("Наименование продукта не может быть пустым или равным null.", nameof(Name));
             }
