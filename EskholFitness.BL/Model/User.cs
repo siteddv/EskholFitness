@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace EskholFitness.BL.Model
 {
@@ -9,6 +10,7 @@ namespace EskholFitness.BL.Model
     public class User
     {
         #region свойства
+        public int ID { get; set; }
         /// <summary>
         /// Имя.
         /// </summary>
@@ -16,43 +18,47 @@ namespace EskholFitness.BL.Model
         /// <summary>
         /// Пол.
         /// </summary>
-        public Gender gender { get; set; }
+        public int? GenderID { get; set; }
+        public Gender Gender { get; set; }
         /// <summary>
         /// Дата рождения.
         /// </summary>
-        public DateTime birthDate { get; set; }
+        public DateTime BirthDate { get; set; }
         /// <summary>
         /// Вес.
         /// </summary>
-        public double weight { get; set; }
+        public double Weight { get; set; }
         /// <summary>
         /// Рост.
         /// </summary>
-        public double height { get; set; }
+        public double Height { get; set; }
         public int Age {
             get
             {
                 
-                if(DateTime.Now.Month < birthDate.Month)
+                if(DateTime.Now.Month < BirthDate.Month)
                 {
-                    return DateTime.Now.Year - birthDate.Year-1;
-                }else if (DateTime.Now.Month > birthDate.Month)
+                    return DateTime.Now.Year - BirthDate.Year-1;
+                }else if (DateTime.Now.Month > BirthDate.Month)
                 {
-                    return DateTime.Now.Year - birthDate.Year;
+                    return DateTime.Now.Year - BirthDate.Year;
                 }
                 else
                 {
-                    if (DateTime.Now.Day >= birthDate.Day)
+                    if (DateTime.Now.Day >= BirthDate.Day)
                     {
-                        return DateTime.Now.Year - birthDate.Year;
+                        return DateTime.Now.Year - BirthDate.Year;
                     }
                     else
                     {
-                        return DateTime.Now.Year - birthDate.Year - 1;
+                        return DateTime.Now.Year - BirthDate.Year - 1;
                     }
                 }
             }  
         } 
+        public virtual ICollection <Eating> Eatings { get; set; }
+        public virtual ICollection<Exerсise> Exerсises { get; set; }
+
         /// <summary>
         /// Создание нового пользователя
         /// </summary>
@@ -87,10 +93,10 @@ namespace EskholFitness.BL.Model
             }
             #endregion
             this.userName = userName;
-            this.gender = gender;
-            this.birthDate = birthDate;
-            this.weight = weight;
-            this.height = height;
+            this.Gender = gender;
+            this.BirthDate = birthDate;
+            this.Weight = weight;
+            this.Height = height;
         }
         public User(string userName)
         {
@@ -100,9 +106,10 @@ namespace EskholFitness.BL.Model
             }
             this.userName = userName;
         }
+        public User() { }
         public override string ToString()
         {
-            return $"Имя: {userName} Пол: {gender} Возрат: {Age} Вес: {weight} Рост: {height}";
+            return $"Имя: {userName} Пол: {Gender} Возрат: {Age} Вес: {Weight} Рост: {Height}";
         }
     }
 }

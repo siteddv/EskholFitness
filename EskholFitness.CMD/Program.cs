@@ -38,6 +38,8 @@ namespace EskholFitness.CMD
             }
 
             UserController userController = new UserController(name);
+            ExercizeController exercizeController = new ExercizeController(userController.CurrentUser);
+            EatingController eatingController = new EatingController(userController.CurrentUser);
 
             if (userController.IsNewUser)
             {
@@ -85,19 +87,26 @@ namespace EskholFitness.CMD
 
             }
             Console.WriteLine($"{resourceManager.GetString("EnterdUser_msg", culture)} : \n{userController.CurrentUser}");
-            Console.WriteLine(resourceManager.GetString("ActionChoice_msg1", culture));
-
-            var key = Console.ReadKey();
-            Console.WriteLine();
-            EatingController ec = new EatingController(userController.CurrentUser);
-            if (key.Key == ConsoleKey.E)
+            while (true)
             {
-                var foodInfo = EnterEating();
-                EatingController eatingController = new EatingController(userController.CurrentUser);
-                eatingController.AddFood(foodInfo.food, foodInfo.weight);
+                Console.WriteLine(resourceManager.GetString("ActionChoice_msg1", culture));
+                Console.WriteLine(resourceManager.GetString("ActionChoice_msg2", culture));
+                Console.WriteLine(resourceManager.GetString("ActionChoice_msg3", culture));
+                Console.WriteLine(resourceManager.GetString("ActionChoice_msg4", culture));
+                var key = Console.ReadKey();
+                switch (key.Key)
+                {
+                    case ConsoleKey.E:
+                        var foodInfo = EnterEating();
+                        eatingController.AddFood(foodInfo.food, foodInfo.weight);
+                        break;
+                    case ConsoleKey.A:
+                        break;
+                    default:
+                        break;
+                }
             }
-
-            Console.ReadKey();
+            
 
         }
         private static (Food food, double weight) EnterEating()

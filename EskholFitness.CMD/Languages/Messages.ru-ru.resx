@@ -125,6 +125,14 @@
     <value>e - ввести новый прием пищи.</value>
     <comment>Просьба выбрать действие</comment>
   </data>
+  <data name="ActionChoice_msg3" xml:space="preserve">
+    <value>a - ввести новую активность</value>
+    <comment>Просьба выбрать действие</comment>
+  </data>
+  <data name="ActionChoice_msg4" xml:space="preserve">
+    <value>любая другая клавиша - выйти из приложения</value>
+    <comment>Просьба выбрать действие</comment>
+  </data>
   <data name="EnterBirthDate_msg" xml:space="preserve">
     <value>Введитe свою дату рождения: (dd/mm/yyyy)</value>
     <comment>Просьба ввести дату рождения пользователя</comment>

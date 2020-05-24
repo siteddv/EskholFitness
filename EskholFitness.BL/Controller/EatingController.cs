@@ -8,22 +8,20 @@ namespace EskholFitness.BL.Controller
 
     public class EatingController : BaseController
     {
-        private const string FOOD_FILE_NAME = "foods.dat";
-        private const string EATING_FILE_NAME = "eating.dat";
         private readonly User user;
         public List<Food> Foods { get; set; }
-        public FoodEating Eating { get; set; }
+        public Eating Eatings { get; set; }
 
         public EatingController(User user)
         {
             this.user = user ?? throw new ArgumentException("Пользователь не может быть пустым", nameof(user));
             Foods = GetAllFoods();
-            Eating = GetEating();
+            Eatings = GetEating();
         }
 
-        private FoodEating GetEating()
+        private Eating GetEating()
         {
-            return GetData<FoodEating>(EATING_FILE_NAME) ?? new FoodEating(user);
+            return GetData<Eating>().FirstOrDefault() ?? new Eating(user);
         }
 
 
@@ -34,19 +32,22 @@ namespace EskholFitness.BL.Controller
             {
                 Foods.Add(food);
             }
-            Eating.Add(food, weight);
+            else
+            {
+                Eatings.Add(product, weight);
+            }
             Save();
         }
 
 
         public List<Food> GetAllFoods()
         {
-            return GetData<List<Food>>(FOOD_FILE_NAME) ?? new List<Food>();
+            return GetData<Food>() ?? new List<Food>();
         }
         public void Save()
         {
-            SaveData(FOOD_FILE_NAME, Foods);
-            SaveData(EATING_FILE_NAME, Eating);
+            SaveData(Foods);
+            SaveData(new List<Eating>() { Eatings });
         }
     }
 }

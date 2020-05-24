@@ -10,10 +10,13 @@ namespace EskholFitness.BL.Model
     [Serializable]
     public class Exerсise
     {
+        public int ID { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
-        public Activity Activity { get; set; }
-        public User User { get; set; }
+        public virtual Activity Activity { get; set; }
+        public int ActivityID { get; set; }
+        public virtual User User { get; set; }
+        public int UserID { get; set; }
         public Exerсise(DateTime StartTime, DateTime EndTime, Activity Activity, User User)
         {
             if (StartTime > DateTime.Now)

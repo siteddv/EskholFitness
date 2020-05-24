@@ -1,30 +1,36 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace EskholFitness.BL.Model
 {
     [Serializable]
     public class Food
     {
+        public int ID { get; set; }
         /// <summary>
         /// Наименование продукта
         /// </summary>
-        public string Name { get; }
+        public string Name { get; set; }
         /// <summary>
         /// Белки на 1 гр продукта
         /// </summary>
-        public double Proteins { get; }
+        public double Proteins { get; set; }
         /// <summary>
         /// Жиры на 1 гр продукта
         /// </summary>
-        public double Fats { get; }
+        public double Fats { get; set; }
         /// <summary>
         /// Углеводы на 1 гр продукта
         /// </summary>
-        public double Carbohydrates { get; }
+        public double Carbohydrates { get; set; }
         /// <summary>
         /// Калории на 1 гр продукта
         /// </summary>
-        public double Calories { get; }
+        public double Calories { get; set; }
+
+        public virtual ICollection<Eating> Eatings { get; set; }
+
+        public Food() { }
 
         public Food(string name) : this(name, 0, 0, 0, 0) { }
         public Food(string name, double proteins, double fats, double carbohydrates, double calories)

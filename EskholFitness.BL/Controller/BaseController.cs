@@ -1,32 +1,17 @@
-﻿using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
+﻿using System.Collections.Generic;
 
 namespace EskholFitness.BL.Controller
 {
     public abstract class BaseController
     {
-        protected T GetData<T>(string filePath) where T : class
+        private readonly IDataSaver manager = new SerializeDataSaver();
+        protected List<T> GetData<T>() where T:class
         {
-            using (FileStream fs = new FileStream(filePath, FileMode.OpenOrCreate))
-            {
-                BinaryFormatter bf = new BinaryFormatter();
-                if (fs.Length > 0 && bf.Deserialize(fs) is T items)
-                {
-                    return items;
-                }
-                else
-                {
-                    return default(T);
-                }
-            }
+            return manager.GetData<T>();
         }
-        protected void SaveData(string filePath, object item)
+        protected void SaveData<T>(List<T> items) where T : class
         {
-            using (FileStream fs = new FileStream(filePath, FileMode.OpenOrCreate))
-            {
-                BinaryFormatter bf = new BinaryFormatter();
-                bf.Serialize(fs, item);
-            }
+            manager.SaveData(items);
         }
     }
 }

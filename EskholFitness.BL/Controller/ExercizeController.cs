@@ -7,11 +7,9 @@ namespace EskholFitness.BL.Controller
 {
     public class ExercizeController : BaseController
     {
-        private const string EXERCISES_FILE_NAME = "exercises.dat";
-        private const string ACTIVITIES_FILE_NAME = "activities.dat";
         private readonly User User;
-        public List<Exerсise> Exerсises;
-        public List<Activity> Activities;
+        public List<Exerсise> Exerсises { get; }
+        public List<Activity> Activities { get; }
 
         public ExercizeController(User User)
         {
@@ -23,29 +21,35 @@ namespace EskholFitness.BL.Controller
         public void AddExercise(Activity activity, DateTime startTime, DateTime endTime)
         {
             Activity act = Activities.SingleOrDefault(a => a.ActivityName.Equals(activity.ActivityName));
+            Exerсise exercise;
             if (act == null)
             {
                 Activities.Add(activity);
-
+                exercise = new Exerсise(startTime, endTime, activity, User);
+                
             }
-            Exerсises.Add(new Exerсise(startTime, endTime, activity, User));
+            else
+            {
+                exercise = new Exerсise(startTime, endTime, act, User);
+            }
+            Exerсises.Add(exercise);
             Save();
             
         }
 
         private List<Activity> GetAllActivities()
         {
-            return GetData<List<Activity>>(ACTIVITIES_FILE_NAME) ?? new List<Activity>();
+            return GetData<Activity>() ?? new List<Activity>();
         }
 
         private List<Exerсise> GetAllExercises()
         {
-            return GetData<List<Exerсise>>(EXERCISES_FILE_NAME) ?? new List<Exerсise>();
+            return GetData<Exerсise>() ?? new List<Exerсise>();
         }
         private void Save()
         {
-            SaveData(ACTIVITIES_FILE_NAME, Activities);
-            SaveData(EXERCISES_FILE_NAME, Exerсises);
+            SaveData(Activities);
+            SaveData(Exerсises);
         }
 
     }

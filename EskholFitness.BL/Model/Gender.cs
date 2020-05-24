@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 
 namespace EskholFitness.BL.Model
@@ -6,7 +7,10 @@ namespace EskholFitness.BL.Model
     [Serializable]
     public class Gender
     {
-        public string genderName { get; }
+        public int ID { get; set; }
+        public string genderName { get; set; }
+        public virtual ICollection <User> Users { get; set; }
+        public Gender() { }
         public Gender (string genderName)
         {
             if (string.IsNullOrWhiteSpace(genderName))
