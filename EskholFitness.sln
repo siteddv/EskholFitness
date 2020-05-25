@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EskholFitness.BLTests", "Es
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EskholFitness.CMD", "EskholFitness.CMD\EskholFitness.CMD.csproj", "{A1A04640-950F-4E0A-B5EB-D5636250A675}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{9EEB4F66-839F-4C8F-B9D3-47CEBE6194FA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,8 @@ Global
 		{A1A04640-950F-4E0A-B5EB-D5636250A675}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A1A04640-950F-4E0A-B5EB-D5636250A675}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A1A04640-950F-4E0A-B5EB-D5636250A675}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9EEB4F66-839F-4C8F-B9D3-47CEBE6194FA}.Debug|Any CPU.ActiveCfg = Debug
+		{9EEB4F66-839F-4C8F-B9D3-47CEBE6194FA}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
